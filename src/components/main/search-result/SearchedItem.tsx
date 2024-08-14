@@ -17,6 +17,7 @@ export function SearchedItem({ item, trigger }: { item: IRepoItem, trigger: (url
 
   const handleGetRepo = async () => {
     await trigger(item.full_name)
+    window.scrollTo(0, 0);
   }
 
 

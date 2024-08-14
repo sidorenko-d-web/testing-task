@@ -8,18 +8,14 @@ import { SelectedRepo } from "./selected-repo/SelectedRepo";
 import { PageControls } from "./page-controls/PageControls";
 
 export function Main() {
-  const requestString = useAppSelector((state) => state.requestStringSlice);
+  const {request} = useAppSelector((state) => state.requestStringSlice);
 
-  const query: IReposQuery = {
-    q: requestString.string,
-    per_page: "10",
-    page: "1",
-  };
+ 
 
   let sort = useAppSelector((state) => state.sortSlice);
 
-  const { data, isLoading } = useSearchReposQuery({ query, sort });
-
+  const { data, isLoading } = useSearchReposQuery({ query: request, sort });
+  
   return (
     <Box className={styles.main}>
       {!data && !isLoading ? (
@@ -30,7 +26,7 @@ export function Main() {
         <>
           <Box className={styles.app}>
             <SearchResult data={data} isLoading={isLoading} />
-            <PageControls />
+            {data?.total_count && <PageControls count={data?.total_count}/>}
           </Box>
           <SelectedRepo />
         </>

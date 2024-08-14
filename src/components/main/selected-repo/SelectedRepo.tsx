@@ -8,8 +8,6 @@ export function SelectedRepo() {
     (state) => state.selectedRepoSlice
   );
 
-  console.log(item, isLoading);
-
   return item ? (
     <RepoDetails item={item}/>
   ) : isLoading ? (

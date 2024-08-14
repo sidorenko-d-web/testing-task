@@ -10,7 +10,7 @@ export function SearchBar() {
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    dispatch(setRequestString(searchString));
+    dispatch(setRequestString({q:searchString}));
   };
 
   return (

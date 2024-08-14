@@ -1,20 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const initialState = {
-  string: ''
-}
+  request: {
+    q: "",
+    page: "1",
+    per_page: "10",
+  },
+};
 
 export const requestStringSlice = createSlice({
-  name: 'string',
+  name: "string",
   initialState,
   reducers: {
     setRequestString: (state, action) => {
-      state.string = action.payload
+      state.request = { ...state.request, ...action.payload };
     },
-  }
+  },
 });
 
 export const { setRequestString } = requestStringSlice.actions;
-export const selectRequestString = (state: RootState) => state.requestStringSlice
-export default requestStringSlice.reducer
+export const selectRequestString = (state: RootState) =>
+  state.requestStringSlice;
+export default requestStringSlice.reducer;

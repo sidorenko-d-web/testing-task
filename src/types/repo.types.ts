@@ -24,6 +24,6 @@ export interface IRepoItem {
 }
 
 export interface IReposResponse {
-  items_count: number;
+  total_count: number;
   items: IRepoItem[];
 }
