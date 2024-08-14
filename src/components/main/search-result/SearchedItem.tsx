@@ -10,7 +10,7 @@ export function SearchedItem({ item, trigger }: { item: IRepoItem, trigger: (url
     language: item.language,
     forks: item.forks,
     stargazers_count: item.stargazers_count,
-    updated_at: item.updated_at,
+    updated_at: item.updated_at.split('T')[0].replace('-', '.').replace('-', '.'),
   };
 
   
