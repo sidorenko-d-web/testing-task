@@ -1,0 +1,24 @@
+@use 'src/assets/colors'
+.searchResult
+  width: 100%
+  padding: 1rem 2rem
+  flex: 1
+
+  .searchedItem
+    width: 95%
+    display: flex
+
+    .itemValue
+      width: 20%
+      color: colors.$black
+      border-bottom: colors.$searchStroke
+      border-radius: 0
+      display: inline-block
+      text-align: left
+      padding: 16px 8px
+      font-size: 14px
+      text-overflow: ellipsis
+      white-space: nowrap
+      overflow: hidden
+      text-transform: none
+    

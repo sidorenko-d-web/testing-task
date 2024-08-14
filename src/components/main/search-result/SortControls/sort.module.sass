@@ -1,0 +1,19 @@
+@use 'src/assets/colors'
+
+.sortControls
+  width: 95%
+  display: flex
+
+  .sortButton
+    width: 20%
+    display: flex
+    justify-content: start
+    color: colors.$black
+    border-bottom: colors.$searchStroke
+    border-radius: 0
+    padding: 16px 8px
+    font-size: 14px
+    text-transform: none
+
+    &:disabled
+      color: colors.$black
