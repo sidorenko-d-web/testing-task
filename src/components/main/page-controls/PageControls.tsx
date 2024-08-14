@@ -1,8 +1,7 @@
-import { Box, TablePagination, Typography } from "@mui/material";
+import { Box, TablePagination } from "@mui/material";
 import styles from "./page-controls.module.sass";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setRequestString } from "../../../redux/slices/requestStringSlice";
-import { ChangeEventHandler } from "react";
 
 export function PageControls({ count }: { count: number }) {
   const { request } = useAppSelector((state) => state.requestStringSlice);
@@ -11,8 +10,10 @@ export function PageControls({ count }: { count: number }) {
   const handleChangePage = (_: any, newPage: number) => {
     dispatch(setRequestString({ page: newPage + 1 }));
   };
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    dispatch(setRequestString({ per_page: event.target.value}));
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    dispatch(setRequestString({ per_page: event.target.value }));
   };
   return (
     <Box className={styles.controls}>

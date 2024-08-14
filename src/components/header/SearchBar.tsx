@@ -3,6 +3,7 @@ import styles from "./header.module.sass";
 import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { setRequestString } from "../../redux/slices/requestStringSlice";
+
 export function SearchBar() {
   const [searchString, setSearchString] = useState("");
 

@@ -9,7 +9,7 @@ export function SelectedRepo() {
   );
 
   return item ? (
-    <RepoDetails item={item}/>
+    <RepoDetails item={item} />
   ) : isLoading ? (
     <p>Loading</p>
   ) : (

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { IRepoItem } from "../../../types/repo.types";
+import type { IRepoItem } from "../../../types/repo.types";
 import styles from "./selected-repo.module.sass";
 import { Star } from "@mui/icons-material";
 

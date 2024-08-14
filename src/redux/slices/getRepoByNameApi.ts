@@ -9,4 +9,5 @@ export const getRepoByName = createApi({
     }),
   }),
 });
-export const { useLazyGetRepoByNameQuery, useGetRepoByNameQuery } = getRepoByName;
+export const { useLazyGetRepoByNameQuery, useGetRepoByNameQuery } =
+  getRepoByName;

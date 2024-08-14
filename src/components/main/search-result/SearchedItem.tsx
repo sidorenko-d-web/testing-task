@@ -1,25 +1,31 @@
 import { Button, Typography } from "@mui/material";
-import { IRepoItem } from "../../../types/repo.types";
+import type { IRepoItem } from "../../../types/repo.types";
 import styles from "./search.module.sass";
 
-type TypeDivided =  Omit<IRepoItem, "full_name" | 'license' | 'description'>
+type TypeDivided = Omit<IRepoItem, "full_name" | "license" | "description">;
 
-export function SearchedItem({ item, trigger }: { item: IRepoItem, trigger: (url: string) => any}) {
-  const itemDivided:TypeDivided = {
+export function SearchedItem({
+  item,
+  trigger,
+}: {
+  item: IRepoItem;
+  trigger: (url: string) => any;
+}) {
+  const itemDivided: TypeDivided = {
     name: item.name,
     language: item.language,
     forks: item.forks,
     stargazers_count: item.stargazers_count,
-    updated_at: item.updated_at.split('T')[0].replace('-', '.').replace('-', '.'),
+    updated_at: item.updated_at
+      .split("T")[0]
+      .replace("-", ".")
+      .replace("-", "."),
   };
 
-  
-
   const handleGetRepo = async () => {
-    await trigger(item.full_name)
+    await trigger(item.full_name);
     window.scrollTo(0, 0);
-  }
-
+  };
 
   return (
     <Button
@@ -32,10 +38,7 @@ export function SearchedItem({ item, trigger }: { item: IRepoItem, trigger: (url
       onClick={handleGetRepo}
     >
       {Object.keys(itemDivided).map((key: string) => (
-        <Typography 
-          key={key} 
-          className={styles.itemValue} 
-          component="p">
+        <Typography key={key} className={styles.itemValue} component="p">
           {itemDivided[key as keyof TypeDivided]
             ? itemDivided[key as keyof TypeDivided]
             : "Нет данных"}

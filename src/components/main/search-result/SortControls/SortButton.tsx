@@ -21,10 +21,10 @@ export function SortButton({
   const handleSort = () => {
     if (orderValue !== "desc") {
       setOrderValue("desc");
-      dispatch(setSort({ order: "desc", sort: value}));
+      dispatch(setSort({ order: "desc", sort: value }));
     } else {
       setOrderValue("asc");
-      dispatch(setSort({ order: "asc", sort: value}));
+      dispatch(setSort({ order: "asc", sort: value }));
     }
   };
 
@@ -48,7 +48,7 @@ export function SortButton({
       sx={{
         padding: 0,
         transition: "all .3s",
-        textOverflow: 'ellipsis',
+        textOverflow: "ellipsis",
         ":hover": { background: "#f2f2f2" },
       }}
     >
