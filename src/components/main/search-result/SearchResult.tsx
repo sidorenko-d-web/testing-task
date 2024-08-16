@@ -1,37 +1,38 @@
 import { Box, Typography } from "@mui/material";
-import type { IReposResponse } from "../../../types/repo.types";
+import type { IReposResponse } from "../../../types/api.types";
 import { SortControls } from "./SortControls/SortControls";
 import { SearchedItem } from "./SearchedItem";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../redux/hooks";
-import { useLazyGetRepoByNameQuery } from "../../../redux/slices/getRepoByNameApi";
+import { useLazyGetRepoByNameQuery } from "../../../redux/slices/getRepoByName.api";
 import { setSelectedRepo } from "../../../redux/slices/selectedRepoSlice";
 import styles from "./search.module.sass";
+import { SearchLoader } from "./SearchLoader";
 
-export function SearchResult({
-  data,
-  isLoading,
-}: {
+interface ISearchResultProps {
   data?: IReposResponse;
-  isLoading: boolean;
-}) {
-  const [trigger, { data: item, isLoading: isLoadingItem }] =
+  isFetching: boolean;
+}
+
+export function SearchResult({ data, isFetching }: ISearchResultProps) {
+  const [trigger, { data: item, isFetching: isFetchingItem, error }] =
     useLazyGetRepoByNameQuery();
 
   const dispatch = useAppDispatch();
 
+  // синхронизация подгрузки деталей репозитория и состояния в redux
   useEffect(() => {
-    dispatch(setSelectedRepo({ item, isLoading: isLoadingItem }));
-  }, [item, isLoadingItem]);
+    dispatch(setSelectedRepo({ item, isFetching: isFetchingItem, error }));
+  }, [item, isFetchingItem]);
 
   return (
     <Box className={styles.searchResult}>
       <Typography variant="h3">Результаты поиска</Typography>
-      {isLoading ? (
-        <p>Loading...</p>
+      <SortControls />
+      {isFetching ? (
+        Array(10).fill(0).map((_, i) => <SearchLoader key={i} />)
       ) : data?.items[0] ? (
         <>
-          <SortControls />
           {data.items.map((item) => (
             <SearchedItem key={item.full_name} item={item} trigger={trigger} />
           ))}

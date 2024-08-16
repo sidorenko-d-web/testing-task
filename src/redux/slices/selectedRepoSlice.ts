@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import type { IRepoItem } from "../../types/repo.types";
+import type { IRepoItem } from "../../types/api.types";
 
-const initialState: { item: IRepoItem | null; isLoading: boolean } = {
+const initialState: {
+  item: IRepoItem | null;
+  isFetching: boolean;
+  error: { status: number; message: string } | null;
+} = {
   item: null,
-  isLoading: false,
+  isFetching: false,
+  error: null
 };
 
+//эндпоинт на запрос определенного репозитория
 export const selectedRepoSlice = createSlice({
   name: "selected-repo",
   initialState,
   reducers: {
     setSelectedRepo: (state, action) => {
       state.item = action.payload.item;
-      state.isLoading = action.payload.isLoading;
+      state.isFetching = action.payload.isFetching;
+      state.error = action.payload.error;
     },
   },
 });

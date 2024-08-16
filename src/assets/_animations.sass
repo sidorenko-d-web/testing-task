@@ -1,0 +1,11 @@
+@use 'src/assets/colors'
+.animation
+  background: linear-gradient(125deg, colors.$gray 30%, #fff 49% 51%, colors.$gray 70%,)
+  background-size: 300%
+  animation: loader 1.5s linear infinite
+  opacity: .5
+  @keyframes loader
+    0%
+      background-position: 100% 0
+    100%
+      background-position: -50% 0

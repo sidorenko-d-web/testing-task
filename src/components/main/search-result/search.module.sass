@@ -1,4 +1,6 @@
 @use 'src/assets/colors'
+@use '../../../assets/animations'
+
 .searchResult
   width: 100%
   padding: 1rem 2rem
@@ -21,4 +23,20 @@
       white-space: nowrap
       overflow: hidden
       text-transform: none
-    
+
+.loaderWrapper
+  display: flex
+  width: 95%
+  border-bottom: colors.$searchStroke
+
+  .loaderItem
+    display: flex
+    width: 20%
+    justify-content: start
+    padding: 16px 8px
+
+    .loaderContent
+      @extend .animation
+      width: 80%
+      height: 21px
+      border-radius: 5px

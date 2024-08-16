@@ -9,6 +9,7 @@ export function SearchBar() {
 
   const dispatch = useAppDispatch();
 
+  //задает поисковую строку, для запроса на api
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     dispatch(setRequestString({q:searchString}));

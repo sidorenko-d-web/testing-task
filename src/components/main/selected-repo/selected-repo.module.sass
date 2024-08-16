@@ -1,6 +1,7 @@
 @use 'src/assets/colors'
+@use '../../../assets/animations'
   
-.details, .noSelectedRepo
+.details, .noSelectedRepo, .loader
   background: colors.$bg
   max-width: calc(100svw / 3)
   min-width: calc(100svw / 3)
@@ -11,7 +12,7 @@
 .noSelectedRepo
   display: flex
   justify-content: center
-  align-items: center
+  padding-top: 45svh
 
 
 .details
@@ -36,3 +37,33 @@
       color: white
       padding: 6px 16px
       border-radius: 999px
+
+.loader
+  display: flex
+  flex-direction: column
+  gap: 1rem
+
+  .line
+    display: flex
+    justify-content: space-between
+    align-items: end
+    .language
+      height: 33px
+      border-radius: 999px
+      width: 25%
+    
+    .stars
+      width: 25%
+
+
+
+
+  .loaderHeadline, .desc, .language, .stars 
+    @extend .animation
+    height: 21px
+    border-radius: 5px
+
+  .loaderHeadline
+    height: 48px
+
+  

@@ -1,30 +1,32 @@
 import { Button, Typography } from "@mui/material";
-import type { IRepoItem } from "../../../types/repo.types";
+import type { IRepoItem } from "../../../types/api.types";
 import styles from "./search.module.sass";
+import { TypeItemInTable } from "../../../types/repoApp.types";
 
-type TypeDivided = Omit<IRepoItem, "full_name" | "license" | "description">;
-
-export function SearchedItem({
-  item,
-  trigger,
-}: {
+interface IRepoItemProps {
   item: IRepoItem;
   trigger: (url: string) => any;
-}) {
-  const itemDivided: TypeDivided = {
+}
+
+export function SearchedItem({ item, trigger }: IRepoItemProps) {
+
+  //отделяем от обекта ключи, которые не нужны в таблице
+  const itemDivided: TypeItemInTable = {
     name: item.name,
     language: item.language,
     forks: item.forks,
     stargazers_count: item.stargazers_count,
+    //оставил только дату, в формате, как было на макете
     updated_at: item.updated_at
       .split("T")[0]
       .replace("-", ".")
       .replace("-", "."),
   };
 
+  //запрос на сервер, для получения данных по репозиторию
   const handleGetRepo = async () => {
-    await trigger(item.full_name);
     window.scrollTo(0, 0);
+    await trigger(item.full_name);
   };
 
   return (
@@ -39,8 +41,10 @@ export function SearchedItem({
     >
       {Object.keys(itemDivided).map((key: string) => (
         <Typography key={key} className={styles.itemValue} component="p">
-          {itemDivided[key as keyof TypeDivided]
-            ? itemDivided[key as keyof TypeDivided]
+          {/* перебор значений и их вывод */}
+          {(itemDivided[key as keyof TypeItemInTable] ||
+            itemDivided[key as keyof TypeItemInTable] === 0)
+            ? itemDivided[key as keyof TypeItemInTable]
             : "Нет данных"}
         </Typography>
       ))}

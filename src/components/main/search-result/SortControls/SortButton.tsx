@@ -4,20 +4,20 @@ import { useState } from "react";
 import { setSort } from "../../../../redux/slices/sortSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import styles from "./sort.module.sass";
+import type { TypeOrder } from "../../../../types/api.types";
 
-export type TypeSort = "asc" | "desc" | null;
-
-export function SortButton({
-  value,
-  isButton,
-}: {
+interface ISortButtonProps {
   value: string;
   isButton: boolean;
-}) {
-  const [orderValue, setOrderValue] = useState<TypeSort>(null);
+}
+
+export function SortButton({ value, isButton }: ISortButtonProps) {
+  const [orderValue, setOrderValue] = useState<TypeOrder>('desc');
   let sort = useAppSelector((state) => state.sortSlice);
   const dispatch = useAppDispatch();
 
+
+  //определяет и то, где и как должна быть нарисована стрелка, и определяет значение для запросa
   const handleSort = () => {
     if (orderValue !== "desc") {
       setOrderValue("desc");
@@ -32,7 +32,7 @@ export function SortButton({
     <Button
       onClick={handleSort}
       endIcon={
-        //я поместил стрелочку в конец столбца, чтобы избежать дергающейся кнопки.
+        //я поместил стрелочку в конец названия столбца, чтобы избежать дергающейся кнопки.
         orderValue && value === sort.sort ? (
           orderValue === "asc" ? (
             <ArrowUpward color="action" />

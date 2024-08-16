@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import type { IReposSortQuery } from "../../types/repo.types";
+import type { TypeReposSortQuery } from "../../types/api.types";
 
-const initialState: IReposSortQuery = {};
+const initialState: TypeReposSortQuery = {
+  order: 'desc'
+};
 
+//слайс, который хранит текущие параметры сортировки
 export const sortSlice = createSlice({
   name: "sort",
   initialState,

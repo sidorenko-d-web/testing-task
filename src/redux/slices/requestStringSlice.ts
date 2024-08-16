@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import type { IReposQuery } from "../../types/api.types";
 
-const initialState = {
+const initialState: {request: IReposQuery} = {
   request: {
     q: "",
     page: "1",
@@ -9,6 +10,8 @@ const initialState = {
   },
 };
 
+//слайс, который хранит в себе параметры запросa: 
+//поисковую строку, текущую страницу и кол-во элементов на страницу
 export const requestStringSlice = createSlice({
   name: "string",
   initialState,
